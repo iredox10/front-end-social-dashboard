@@ -1,0 +1,275 @@
+$dark_mode: hsl(210, 78%, 56%) , hsl(146, 68%, 55%);
+$text_color: hsl(228, 34%, 66%);
+@font-face {
+    font-family: inter;
+    src: url(./Inter-VariableFont_slnt\,wght.ttf);
+}
+body{
+    font-family: inter;
+    font-size: 14px;
+    background: hsl(230, 17%, 14%);
+    padding: 1rem 2rem;
+    padding: 1rem 2rem;
+}
+.top_background{
+    position: absolute;
+    width: 100%;
+    height: 15rem;
+    background:  hsl(232, 19%, 15%);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+@mixin card($border_color) {
+    .card {
+        padding: 1rem;
+        border-top: 5px solid $border_color;
+        border-radius: 5px;
+        background: hsl(228, 28%, 20%);
+        text-align: center;
+        margin: 1rem 0;
+        color: white;
+        text-align: center;
+        transition: all .3s ease;
+        cursor: pointer;
+        .profile{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: .5rem;
+            gap: .5rem;
+            color: $text_color;
+            font-weight: 600;
+        }
+        .rating{
+            text-transform: uppercase;
+            h1{
+                font-size: 4.5rem;
+            }
+            p{
+                font-weight: 400;
+                letter-spacing: .5rem;
+                color: $text_color;
+            }
+        }
+        .days{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            margin: 1.4rem 0;
+            text-transform: capitalize;
+            font-weight: 600;
+        }
+        &:hover{
+            background:hsl(229, 26%, 33%);
+        }
+    }
+}
+@mixin second_card($percent_color:hsl(150, 100%, 25%)) {
+    padding: 1rem;
+    background: hsl(228, 28%, 20%);
+    margin: 1rem 0;
+    border-radius: .2rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    .card_header,.card_rating{
+        display: flex;
+        justify-content: space-between;
+    }
+    .card_header{
+        color: $text_color;
+        text-transform: capitalize;
+        margin-bottom: 2rem;
+    }
+    .card_rating{
+        h1{
+            color: hsl(0, 0%, 100%);
+            font-size: 2rem;
+        }
+        .percent {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            color: $percent_color;
+            p{
+                font-weight: 700 ;
+            }
+            
+        }
+    }
+    &:hover {
+        background:hsl(229, 26%, 33%);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    .head{
+        border-bottom: 1px solid $text_color;
+        padding-bottom: 1rem ;
+        padding-bottom: 1.5rem;
+        h1{
+            color: white;
+            text-transform: capitalize;
+        }
+        p{
+            font-size: 1.2rem;
+            color: $text_color;
+            font-weight: 500;
+        }
+    }
+    .mode {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: $text_color;
+        text-transform: capitalize;
+        margin: 1rem 0;
+        label{
+            display: inline-block;
+            width: 5rem;
+            height: 1.5rem;
+            background: linear-gradient(to right,  hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+            margin-left: 1rem;
+            padding: 0 .3rem;
+            border-radius: 1rem;
+            position: relative;
+            cursor: pointer;
+            .scroll{
+                position: absolute;
+                width: 25px;
+                height: 100%;
+                background: white;
+                border-radius: 100%;
+                cursor: pointer;
+                transition: all .3s ease;
+            }
+        }
+        input{
+            display: none;
+        }
+    }
+    .scroll.move{
+        transform: translateX(200%)
+    }
+}
+.change_mode.open{
+    
+    .change_mode::before{
+        transform: translateX(50%)
+    }
+}
+body.open{
+    background: hsl(0, 0%, 100%);
+    .head h1{
+        color: hsl(228, 12%, 44%);
+    }
+}
+.card_container.open{
+    h1{
+        color: hsl(228, 12%, 44%);
+    }
+    .card{
+        background: hsl(227, 47%, 96%);
+        color: hsl(228, 12%, 44%);
+        &:hover{
+            background: hsl(230, 22%, 74%);
+        }
+    }
+}
+.second_card.open{
+    h1{
+        color: hsl(228, 12%, 44%);
+    }
+    .card{
+        background: hsl(227, 47%, 96%);
+        .card_rating h1{
+             color: hsl(228, 12%, 44%);
+        }
+        .profile{
+        color: hsl(228, 12%, 44%);
+        }
+         &:hover {
+             background: hsl(230, 22%, 74%);
+         }
+    }
+}
+.top_background.open{
+    background: hsl(225, 100%, 98%);
+}
+.card_container {
+    @include card(hsl(208, 92%, 53%));
+    .card{
+        &:nth-child(2){
+            border-top-color: hsl(203, 89%, 53%);
+            .days{
+                color: hsl(150, 100%, 25%);
+            }
+        }
+        &:nth-child(3){
+            position: relative;
+            border: none;
+            .days{
+                color: hsl(150, 100%, 25%);
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: .4rem;
+                border-radius: 12px 12px 0 0;
+                background: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+            }
+        }
+        &:nth-child(4){
+            border-top-color: hsl(348, 97%, 39%);
+            .days{
+                color: hsl(348, 97%, 39%);
+            }
+        }
+    }
+}
+
+.second_card{
+    margin: 4rem 0;
+    h1{
+        color: hsl(0, 0%, 100%);
+        text-transform: capitalize;
+        font-size: 1.5rem;
+    }
+    .card{
+        @include second_card();
+        &:nth-child(7),&:last-child{
+            .percent{
+                color: red;
+            }
+        }
+        
+    }
+}
+
+@media (min-width:900px) {
+    body{
+        padding: 1 5rem;
+    }
+    header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .head{
+            border: initial;
+        }
+    }
+    .card_container,.second_card .cards{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 1rem;
+    }
+}
